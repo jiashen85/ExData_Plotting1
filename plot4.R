@@ -8,19 +8,19 @@ names(df)<-c("Date","Time","Global_active_power","Global_reactive_power","Voltag
 df$Datetime <- strptime(paste(df$Date, df$Time), "%d/%m/%Y %H:%M:%S")
 
 
-#plo4:display 4 plots on the same pane by using with function. 
+#plo4:display 4 plots on the same pane. 
 
-#specify the margin, outer margin and if it's filled up by row or column. 
-par(mfrow=c(2,2),mar=c(2,2,2,2),oma=(0,0,2,0))
-
-with(df,{
- plot(df$Datetime, df$Global_active_power, type = "l", xlab = "", ylab = "Global Active Power")
- plot(df$Datetime, df$Voltage, type = "l", xlab = "datetime", ylab = "Voltage")
- plot(df$Datetime, df$Sub_metering_1, type = "l", xlab = "", ylab = "Energy sub metering")
- plot(df$Datetime, df$Global_reactive_power, type = "l", xlab = "datetime", ylab = "Global_reactive_power")
-})
-
-
+#specify the margin and if it's filled up by row or column. 
+par(mfrow=c(2,2),mar=c(4,4,2,2))
+plot(df$Datetime, df$Global_active_power, type = "l", xlab = "", ylab = "Global Active Power")
+#the second plot on the top right has x-axis label "datetime".
+plot(df$Datetime, df$Voltage, type = "l", xlab = "datetime", ylab = "Voltage")
+plot(df$Datetime, df$Sub_metering_1, type = "l", xlab = "", ylab = "Energy sub metering")
 points(df$Datetime, df$Sub_metering_2, type = "l", xlab = "", ylab = "Energy sub metering",col = "red")
 points(df$Datetime, df$Sub_metering_3, type = "l", xlab = "", ylab = "Energy sub metering",col = "blue")
 legend("topright", lty = 1, col = c("black", "red", "blue"),legend = c("Sub_metering_1","Sub_metering_2", "Sub_metering_3"))
+#the bottom right plot has x axis label "datetime". 
+plot(df$Datetime, df$Global_reactive_power, type = "l", xlab = "datetime", ylab = "Global_reactive_power")
+
+
+
